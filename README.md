@@ -63,3 +63,8 @@ docker-compose up -d
 ```
 and access chronograf at `localhost:8888`
 
+In the data explorer, you should find your data under:
+```
+telegraf.autogen > mqtt_consumer > topics - 1
+```
+
