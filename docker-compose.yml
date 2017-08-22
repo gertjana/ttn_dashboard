@@ -33,7 +33,7 @@ services:
     environment:
       - VIRTUAL_HOST=chronograf.${DOMAIN}
       - VIRTUAL_PORT=8888
-          ports:
+    ports:
       - "8888:8888"
       - "10000:10000"
     links:
