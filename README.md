@@ -61,10 +61,13 @@ then you go run
 ```
 docker-compose up -d
 ```
-and access chronograf at `localhost:8888`
+and access chronograf at `localhost:8888`, 
+connect to influxdb:8086
 
 In the data explorer, you should find your data under:
 ```
 telegraf.autogen > mqtt_consumer > topics - 1
 ```
 
+or in grafana at `localhost:3000` 
+also add an influxdb datasource at `influxdb:8086`
