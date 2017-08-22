@@ -11,9 +11,7 @@ services:
   telegraf:
     image: telegraf
     volumes:
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    environment:
-      - VIRTUAL_HOST=telegraf.${DOMAIN}
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro      
     links:
       - influxdb
     ports:
@@ -34,7 +32,8 @@ services:
       - ./data/chronograf:/var/lib/chronograf
     environment:
       - VIRTUAL_HOST=chronograf.${DOMAIN}
-    ports:
+      - VIRTUAL_PORT=8888
+          ports:
       - "8888:8888"
       - "10000:10000"
     links:
