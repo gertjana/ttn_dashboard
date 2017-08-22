@@ -6,6 +6,7 @@ services:
     ports:
       - "80:80"
     volumes:
+      -v /path/to/htpasswd:/etc/nginx/htpasswd
       - /var/run/docker.sock:/tmp/docker.sock:ro
   # Define a Telegraf service
   telegraf:
