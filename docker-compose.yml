@@ -6,6 +6,8 @@ services:
     image: telegraf
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      - VIRTUAL_HOST=telegraf.${DOMAIN}
     links:
       - influxdb
     ports:
@@ -24,6 +26,8 @@ services:
     image: chronograf
     volumes:
       - ./data/chronograf:/var/lib/chronograf
+    environment:
+      - VIRTUAL_HOST=chronograf.${DOMAIN}
     ports:
       - "8888:8888"
       - "10000:10000"
@@ -41,12 +45,12 @@ services:
       - influxdb
     ports:
       - "9092:9092"
-
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
     volumes:
       - ./data/grafana:/var/lib/grafana
+    environment:
+      - VIRTUAL_HOST=grafana.${DOMAIN}
     ports:
       - "3000:3000"
     links:
