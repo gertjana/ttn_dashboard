@@ -31,9 +31,6 @@ services:
     image: chronograf
     volumes:
       - ./data/chronograf:/var/lib/chronograf
-    environment:
-      - VIRTUAL_HOST=chronograf.${DOMAIN}
-      - VIRTUAL_PORT=8888
     ports:
       - "8888:8888"
       - "10000:10000"
