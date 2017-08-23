@@ -18,7 +18,8 @@ consisting of
 * InfluxDB - time series db
 * Chronograf - admin ui
 * Kapacitor - Alerting
-* Telegraf - Metrics gathering 
+* Telegraf - Metrics gathering
+* grafana - Dashboards
 
 in a bunch of docker containers
 
