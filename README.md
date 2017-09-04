@@ -36,11 +36,11 @@ http://influxdb:8086
 ```
 and then look for the `inputs.mqtt_consumer` section and change it to:
 
-filling in the `region`, `ttn-application-eui` and `ttn-acces-key` from the TTN application you want to connect to 
+filling in the `<ttn-region>`, `<ttn-application-eui>` and `<ttn-acces-key>` from the TTN application you want to connect to 
 
 ```
 [[inputs.mqtt_consumer]]
-  servers = ["<region>.thethings.network:1883"]
+  servers = ["<ttn-region>.thethings.network:1883"]
   qos = 0
 
   topics = [
