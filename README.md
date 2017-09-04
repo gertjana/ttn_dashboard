@@ -1,8 +1,18 @@
 ## Setup to consume sensor data from the The Things Network
 
+consisting of
+
+* Telegraf - Metrics gathering
+* InfluxDB - time series db
+* Chronograf - admin ui for influx
+* Kapacitor - Alerting framework
+* Grafana - Dashboards
+
+in a bunch of docker containers
+
 ### requirements:
 
-your data that comes from TTN should be in a json format with all the fields at the 'root' level:
+your data that comes from TTN should be in a json format for instance:
 ```
 {
   "temperature": 24.3,
@@ -12,27 +22,22 @@ your data that comes from TTN should be in a json format with all the fields at 
 ```
 
 ### Configuration
-
-consisting of
-
-* InfluxDB - time series db
-* Chronograf - admin ui
-* Kapacitor - Alerting
-* Telegraf - Metrics gathering
-* grafana - Dashboards
-
-in a bunch of docker containers
+we will connect to the MQTT broker of TTN to get our sensor data
 
 First get a telegraf config:
+
+from the root of this application run:
 ```
 docker run --rm telegraf -sample-config > ./telegraf/telegraf.conf
 ```
-
-in the config look for the `output.influxdb` and change that to 
+in the telegraf.conf look for the `outputs.influxdb` section and change the url to 
 ```
 http://influxdb:8086
 ```
-and then look for the `input.mqtt_consumer` section and change it to:
+and then look for the `inputs.mqtt_consumer` section and change it to:
+
+filling in the `region`, `ttn-application-eui` and `ttn-acces-key` from the TTN application you want to connect to 
+
 ```
 [[inputs.mqtt_consumer]]
   servers = ["<region>.thethings.network:1883"]
@@ -51,8 +56,8 @@ and then look for the `input.mqtt_consumer` section and change it to:
   persistent_session = false
   client_id = ""
 
-  username = "<ttn-app>"
-  password = "<ttn-key>"
+  username = "<ttn-application-eui>"
+  password = "<ttn-access-key>"
 
   data_format = "json"
 ```
